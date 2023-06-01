@@ -6,8 +6,10 @@ import React, {useCallback, useState} from 'react'
 import styled from 'styled-components'
 import DetailPanelButton from '@theatre/studio/uiComponents/DetailPanelButton'
 import StateConflictRow from './ProjectDetails/StateConflictRow'
+// eslint-disable-next-line no-restricted-syntax
 
 const Container = styled.div``
+
 
 const TheExportRow = styled.div`
   padding: 8px 10px;
@@ -33,6 +35,7 @@ const ProjectDetails: React.FC<{
   const suggestedFileName = `${slugifiedProjectId}.theatre-project-state.json`
 
   const [downloaded, setDownloaded] = useState(false)
+  const [uploaded, setUploaded] = useState(false)
 
   const exportProject = useCallback(() => {
     const str = JSON.stringify(
@@ -60,6 +63,32 @@ const ProjectDetails: React.FC<{
     setTimeout(() => {
       URL.revokeObjectURL(objUrl)
     }, 40000)
+  }, [project, suggestedFileName])
+
+  const uploadProject = useCallback(() => {
+
+    const str = JSON.stringify(
+      getStudio().createContentOfSaveFile(project.address.projectId),
+      null,
+      2,
+    )
+    const file = new File([str], suggestedFileName, {
+      type: 'application/json',
+    })
+    const objUrl = URL.createObjectURL(file)
+
+    serverUpdatedCallBack(file);
+
+    setUploaded(true)
+    setTimeout(() => {
+      setUploaded(false)
+    }, 2000)
+
+    setTimeout(() => {
+      URL.revokeObjectURL(objUrl)
+    }, 40000)
+
+
   }, [project, suggestedFileName])
 
   const exportTooltip = usePopover(
@@ -93,6 +122,18 @@ const ProjectDetails: React.FC<{
             disabled={downloaded}
           >
             {downloaded ? '(Exported)' : `Export ${projectId} to JSON`}
+            
+          </DetailPanelButton>
+          <br></br>
+          <DetailPanelButton
+            onMouseEnter={(e) =>
+              exportTooltip.open(e, e.target as unknown as HTMLButtonElement)
+            }
+            onClick={!uploaded ? uploadProject : undefined}
+            disabled={uploaded}
+          >
+             {uploaded ? '(Uploaded)' : `Upload ${projectId}'s JSON to Local Server`}
+            
           </DetailPanelButton>
         </TheExportRow>
       </Container>

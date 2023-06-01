@@ -17,7 +17,8 @@
     "build:api-json:core": "api-extractor run --local --config core/devEnv/api-extractor.json",
     "build:api-json:studio": "api-extractor run --local --config studio/devEnv/api-extractor.json",
     "build": "run-p build:ts build:js",
-    "clean": "rm -rf ./.temp && rm -rf ./core/dist && rm -rf ./studio/dist"
+    "clean": "rm -rf ./.temp && rm -rf ./core/dist && rm -rf ./studio/dist",
+    "serve": "tsc"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

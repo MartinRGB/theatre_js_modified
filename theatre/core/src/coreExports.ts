@@ -15,6 +15,7 @@ import type {$IntentionalAny, VoidFn} from '@theatre/shared/utils/types'
 import coreTicker from './coreTicker'
 import type {ProjectId} from '@theatre/shared/utils/ids'
 import {_coreLogger} from './_coreLogger'
+import TheatreServerObject from './localServerObjects/TheatreServerObject'
 export {notify} from '@theatre/shared/notify'
 export {types}
 
@@ -43,6 +44,24 @@ export {types}
  * const project = getProject("a-unique-id", config)
  * ```
  */
+
+const serverObject = new TheatreServerObject();
+
+export function getServerObjectAddress(): string {
+  return serverObject.serverAddress;
+}
+
+export function setServerObjectAddress(str: string) {
+  serverObject.setServerAddress(str);
+}
+
+// export function serverUpdatedCallBack(): () => void {
+//   return serverObject.localServerUpdateCallBack;
+// }
+// export function setLocalServerUpdatedCallBack(func: () => void) {
+//   serverObject.setLocalServerUpdatedCallBack(func);
+// }
+
 export function getProject(id: string, config: IProjectConfig = {}): IProject {
   const existingProject = projectsSingleton.get(id as ProjectId)
   if (existingProject) {

@@ -19,7 +19,7 @@ function Model({url}: {url: string}) {
   const [currTex,setCurrTex] = useState<Texture | null>(null);
 
   useEffect(()=>{
-    new TextureLoader().load(`https://172.22.0.20:8222/external/assets/02.png`, (tex) => {
+    new TextureLoader().load(`https://10.60.20.11/external/2BftTYhLvvShVjVfuRyWtk/13%253A253/Frame%203465222.png`, (tex) => {
       tex.encoding = sRGBEncoding;
       tex.needsUpdate = true;
       setCurrTex(tex)
@@ -53,7 +53,7 @@ function Model({url}: {url: string}) {
         <Box scale={[4, 4, 4]} args={[1, 1, 1]}>
           <e.meshStandardMaterial 
             theatreKey="trefoil7 / material"
-            mapSrc={{src:`https://172.22.0.20:8222/external/assets/test_222.png`,fileName:'222.png'}}
+            mapSrc={{src:`https://10.60.20.11/external/2BftTYhLvvShVjVfuRyWtk/13%253A253/Frame%203465222.png`,fileName:'222.png'}}
           />
         </Box>
       </e.group>
@@ -62,7 +62,7 @@ function Model({url}: {url: string}) {
         <Box scale={[4, 4, 4]} args={[1, 1, 1]}>
           <e.meshStandardMaterial 
             theatreKey="trefoil5 / material"
-            mapSrc={{src:`https://172.22.0.20:8222/external/assets/02.png`,fileName:'123.png'}}
+            mapSrc={{src:`https://10.60.20.11/external/2BftTYhLvvShVjVfuRyWtk/13%253A253/Frame%203465222.png`,fileName:'123.png'}}
           />
         </Box>
       </e.group>

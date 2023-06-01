@@ -10,6 +10,10 @@
   ],
   "scripts": {
     "playground": "yarn workspace playground run serve",
+    "serve:theatre": "cd theatre && npm run serve",
+    "serve": "run-p serve:theatre playground",
+    "build:theatre": "cd theatre && npm run build",
+    "build:r3f": "cd packages/r3f && npm run build",
     "test:e2e": "yarn workspace playground run test",
     "test:e2e:ci": "yarn workspace playground run test:ci",
     "test:compatibility:ci": "yarn workspace @theatre/compatibility-tests run test:ci",
