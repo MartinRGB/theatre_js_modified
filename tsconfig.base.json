@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["es2017", "dom", "ESNext"],
+    "isolatedModules": true,
+    "importsNotUsedAsValues": "error",
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "declarationMap": true,
+    "stripInternal": true,
+    "declaration": true,
+    "paths": {
+      "@theatre/core": ["./theatre/core/src/index.ts"],
+      "@theatre/studio": ["./theatre/studio/src/index.ts"],
+      "@theatre/studio/*": ["./theatre/studio/src/*"],
+      "@theatre/core/*": ["./theatre/core/src/*"],
+      "@theatre/shared/*": ["./theatre/shared/src/*"],
+      "@theatre/dataverse": ["./packages/dataverse/src/index.ts"],
+      "@theatre/react": ["./packages/react/src/index.ts"],
+      "@theatre/r3f": ["./packages/r3f/src/index.ts"],
+      "@theatre/r3f/dist/extension": ["./packages/r3f/src/extension/index.ts"],
+      "@theatre/dataverse-experiments": [
+        "./packages/dataverse-experiments/src/index.ts"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["**/node_modules", "**/.*", "**/xeno", "**/dist", "**/.temp"]
+}

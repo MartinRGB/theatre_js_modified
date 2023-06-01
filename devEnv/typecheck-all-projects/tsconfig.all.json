@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "../.."
+  },
+  "files": [],
+  "references": [
+    {"path": "../../theatre"},
+    {"path": "../../packages/dataverse"},
+    {"path": "../../packages/playground"},
+    {"path": "../../packages/r3f"},
+    {"path": "../../examples/basic-dom"}
+  ]
+}
