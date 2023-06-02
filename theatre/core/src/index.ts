@@ -9,13 +9,13 @@ export type {IProject, IProjectConfig} from './projects/TheatreProject'
 export type {ISequence} from './sequences/TheatreSequence'
 export type {ISheetObject} from './sheetObjects/TheatreSheetObject'
 export type {ISheet} from './sheets/TheatreSheet'
-export type {IServerObjects} from './localServerObjects/TheatreServerObject'
 export type {UnknownShorthandCompoundProps} from './propTypes'
 import * as globalVariableNames from '@theatre/shared/globalVariableNames'
 import type StudioBundle from '@theatre/studio/StudioBundle'
 import CoreBundle from './CoreBundle'
 
 registerCoreBundle()
+
 
 /**
  * @remarks
@@ -105,4 +105,5 @@ function registerCoreBundle() {
   ) {
     possibleExistingStudioBundle.registerCoreBundle(coreBundle)
   }
+
 }

@@ -452,7 +452,6 @@ export const filesrc = (
 ): PropTypeConfig_FileSrc => {
   if (process.env.NODE_ENV !== 'production') {
     validateCommonOpts('t.file(defaultValue, opts)', opts)
-    console.log(typeof defaultValue)
     if (typeof defaultValue !== 'object') {
       throw new Error(
         `defaultValue in t.filesrc(defaultValue) must be a string. ${userReadableTypeOfValue(

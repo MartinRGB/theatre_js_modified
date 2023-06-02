@@ -70,6 +70,8 @@ export interface IProject {
    * **Docs: https://www.theatrejs.com/docs/latest/manual/sheets**
    */
   sheet(sheetId: string, instanceId?: string): ISheet
+
+  setConfig:(con:any) => void
 }
 
 export default class TheatreProject implements IProject {
@@ -79,8 +81,21 @@ export default class TheatreProject implements IProject {
   /**
    * @internal
    */
+  public conf: IProjectConfig
+  public idx: string
   constructor(id: string, config: IProjectConfig = {}) {
+    this.conf = config;
+    this.idx = id;
     setPrivateAPI(this, new Project(id as ProjectId, config, this))
+  }
+
+  get config(): IProjectConfig {
+    return this.conf
+  }
+
+  public setConfig(con:any) {
+    this.conf = con;
+    setPrivateAPI(this, new Project(this.idx as ProjectId, this.conf, this))
   }
 
   get ready(): Promise<void> {

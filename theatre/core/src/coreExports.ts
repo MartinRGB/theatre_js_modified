@@ -15,7 +15,6 @@ import type {$IntentionalAny, VoidFn} from '@theatre/shared/utils/types'
 import coreTicker from './coreTicker'
 import type {ProjectId} from '@theatre/shared/utils/ids'
 import {_coreLogger} from './_coreLogger'
-import TheatreServerObject from './localServerObjects/TheatreServerObject'
 export {notify} from '@theatre/shared/notify'
 export {types}
 
@@ -45,36 +44,19 @@ export {types}
  * ```
  */
 
-const serverObject = new TheatreServerObject();
-
-export function getServerObjectAddress(): string {
-  return serverObject.serverAddress;
-}
-
-export function setServerObjectAddress(str: string) {
-  serverObject.setServerAddress(str);
-}
-
-// export function serverUpdatedCallBack(): () => void {
-//   return serverObject.localServerUpdateCallBack;
-// }
-// export function setLocalServerUpdatedCallBack(func: () => void) {
-//   serverObject.setLocalServerUpdatedCallBack(func);
-// }
-
 export function getProject(id: string, config: IProjectConfig = {}): IProject {
   const existingProject = projectsSingleton.get(id as ProjectId)
   if (existingProject) {
-    if (process.env.NODE_ENV !== 'production') {
-      if (!deepEqual(config, existingProject.config)) {
-        throw new Error(
-          `You seem to have called Theatre.getProject("${id}", config) twice, with different config objects. ` +
-            `This is disallowed because changing the config of a project on the fly can lead to hard-to-debug issues.\n\n` +
-            `You can fix this by either calling Theatre.getProject() once per projectId,` +
-            ` or calling it multiple times but with the exact same config.`,
-        )
-      }
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   if (!deepEqual(config, existingProject.config)) {
+    //     throw new Error(
+    //       `You seem to have called Theatre.getProject("${id}", config) twice, with different config objects. ` +
+    //         `This is disallowed because changing the config of a project on the fly can lead to hard-to-debug issues.\n\n` +
+    //         `You can fix this by either calling Theatre.getProject() once per projectId,` +
+    //         ` or calling it multiple times but with the exact same config.`,
+    //     )
+    //   }
+    // }
     return existingProject.publicApi
   }
 
@@ -101,6 +83,7 @@ export function getProject(id: string, config: IProjectConfig = {}): IProject {
 
   return new TheatreProject(id, config)
 }
+
 
 /**
  * Lightweight validator that only makes sure the state's definitionVersion is correct.

@@ -10,7 +10,6 @@ import StateConflictRow from './ProjectDetails/StateConflictRow'
 
 const Container = styled.div``
 
-
 const TheExportRow = styled.div`
   padding: 8px 10px;
   display: flex;
@@ -65,32 +64,6 @@ const ProjectDetails: React.FC<{
     }, 40000)
   }, [project, suggestedFileName])
 
-  const uploadProject = useCallback(() => {
-
-    const str = JSON.stringify(
-      getStudio().createContentOfSaveFile(project.address.projectId),
-      null,
-      2,
-    )
-    const file = new File([str], suggestedFileName, {
-      type: 'application/json',
-    })
-    const objUrl = URL.createObjectURL(file)
-
-    serverUpdatedCallBack(file);
-
-    setUploaded(true)
-    setTimeout(() => {
-      setUploaded(false)
-    }, 2000)
-
-    setTimeout(() => {
-      URL.revokeObjectURL(objUrl)
-    }, 40000)
-
-
-  }, [project, suggestedFileName])
-
   const exportTooltip = usePopover(
     {debugName: 'ProjectDetails', pointerDistanceThreshold: 50},
     () => (
@@ -125,16 +98,6 @@ const ProjectDetails: React.FC<{
             
           </DetailPanelButton>
           <br></br>
-          <DetailPanelButton
-            onMouseEnter={(e) =>
-              exportTooltip.open(e, e.target as unknown as HTMLButtonElement)
-            }
-            onClick={!uploaded ? uploadProject : undefined}
-            disabled={uploaded}
-          >
-             {uploaded ? '(Uploaded)' : `Upload ${projectId}'s JSON to Local Server`}
-            
-          </DetailPanelButton>
         </TheExportRow>
       </Container>
     </>

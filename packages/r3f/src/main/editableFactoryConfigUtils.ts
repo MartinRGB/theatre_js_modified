@@ -269,7 +269,6 @@ export const createFileSrcPropConfig = (
             tex.encoding = sRGBEncoding;
             // object[key.split('Src')[0]] = tex;
             // object[key.split('Src')[0]].needsUpdate = true;
-            console.log(object[`${key.split('Src')[0]}`])
             object.needsUpdate = true;
             object[`${key.split('Src')[0]}`] = tex;
             tex.dispose()
