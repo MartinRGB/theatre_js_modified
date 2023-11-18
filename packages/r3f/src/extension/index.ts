@@ -1,9 +1,6 @@
-import SnapshotEditor from './components/SnapshotEditor'
 import type {IExtension} from '@theatre/studio'
 import {prism, Ticker, val} from '@theatre/dataverse'
 import {getEditorSheetObject} from './editorStuff'
-import ReactDOM from 'react-dom'
-import React from 'react'
 import type {ToolsetConfig} from '@theatre/studio'
 import useExtensionStore from './useExtensionStore'
 
@@ -20,25 +17,25 @@ const gameIconsIceCube = `<svg stroke="currentColor" fill="currentColor" stroke-
 const r3fExtension: IExtension = {
   id: '@theatre/r3f',
   toolbars: {
-    global(set, studio) {
-      const calc = prism<ToolsetConfig>(() => {
-        const editorObject = getEditorSheetObject()
+    // global(set, studio) {
+    //   const calc = prism<ToolsetConfig>(() => {
+    //     const editorObject = getEditorSheetObject()
 
-        return [
-          {
-            type: 'Icon',
-            title: 'Create Snapshot',
-            svgSource: io5CameraOutline,
-            onClick: () => {
-              studio.createPane('snapshot')
-            },
-          },
-        ]
-      })
-      return calc.tapImmediate(Ticker.raf, () => {
-        set(calc.getValue())
-      })
-    },
+    //     return [
+    //       {
+    //         type: 'Icon',
+    //         title: 'Create Snapshot',
+    //         svgSource: io5CameraOutline,
+    //         onClick: () => {
+    //           studio.createPane('snapshot')
+    //         },
+    //       },
+    //     ]
+    //   })
+    //   return calc.tapImmediate(Ticker.raf, () => {
+    //     set(calc.getValue())
+    //   })
+    // },
     'snapshot-editor': (set, studio) => {
       const {createSnapshot} = useExtensionStore.getState()
 
@@ -141,18 +138,18 @@ const r3fExtension: IExtension = {
       })
     },
   },
-  panes: [
-    {
-      class: 'snapshot',
-      mount: ({paneId, node}) => {
-        ReactDOM.render(React.createElement(SnapshotEditor, {paneId}), node)
-        function unmount() {
-          ReactDOM.unmountComponentAtNode(node)
-        }
-        return unmount
-      },
-    },
-  ],
+  // panes: [
+  //   {
+  //     class: 'snapshot',
+  //     mount: ({paneId, node}) => {
+  //       ReactDOM.render(React.createElement(SnapshotEditor, {paneId}), node)
+  //       function unmount() {
+  //         ReactDOM.unmountComponentAtNode(node)
+  //       }
+  //       return unmount
+  //     },
+  //   },
+  // ],
 }
 
 export default r3fExtension

@@ -9,15 +9,9 @@ import BasicTooltip from '@theatre/studio/uiComponents/Popover/BasicTooltip'
 import {val} from '@theatre/dataverse'
 import ExtensionToolbar from './ExtensionToolbar/ExtensionToolbar'
 import PinButton from './PinButton'
-import {
-  Details,
-  Ellipsis,
-  Outline,
-  Bell,
-} from '@theatre/studio/uiComponents/icons'
+import {Details, Outline} from '@theatre/studio/uiComponents/icons'
 import DoubleChevronLeft from '@theatre/studio/uiComponents/icons/DoubleChevronLeft'
 import DoubleChevronRight from '@theatre/studio/uiComponents/icons/DoubleChevronRight'
-import ToolbarIconButton from '@theatre/studio/uiComponents/toolbar/ToolbarIconButton'
 import usePopover from '@theatre/studio/uiComponents/Popover/usePopover'
 import MoreMenu from './MoreMenu/MoreMenu'
 import {
@@ -181,7 +175,7 @@ const GlobalToolbar: React.FC = () => {
       </SubContainer>
       <SubContainer>
         {notificationsTooltip}
-        <PinButton
+        {/* <PinButton
           ref={notificationsTriggerRef as $IntentionalAny}
           onClick={() => {
             getStudio().transaction(({stateEditors, drafts}) => {
@@ -196,9 +190,9 @@ const GlobalToolbar: React.FC = () => {
           pinned={useVal(getStudio().atomP.ahistoric.pinNotifications) ?? false}
         >
           {hasNotifications && <HasUpdatesBadge type="warning" />}
-        </PinButton>
+        </PinButton> */}
         {moreMenu.node}
-        <ToolbarIconButton
+        {/* <ToolbarIconButton
           ref={moreMenuTriggerRef}
           onClick={(e) => {
             moreMenu.toggle(e, moreMenuTriggerRef.current!)
@@ -206,7 +200,7 @@ const GlobalToolbar: React.FC = () => {
         >
           <Ellipsis />
           {showUpdatesBadge && <HasUpdatesBadge type="info" />}
-        </ToolbarIconButton>
+        </ToolbarIconButton> */}
         <PinButton
           ref={triggerButtonRef as $IntentionalAny}
           onClick={() => {
